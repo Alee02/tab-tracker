@@ -7,6 +7,9 @@ export default {
   //  object to allow us to call register method, to hit the register endpoint
   register (credentials) {
     return Api().post('register', credentials)
+  },
+  login (credentials) {
+    return Api().post('login', credentials)
   }
 }
 
