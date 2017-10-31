@@ -1,11 +1,9 @@
 <template>
   <v-layout column>
     <v-flex xs6 offset-xs3>
-      <div class="white elevation-2">
-        <v-toolbar flat dense class="cyan" dark>
-          <v-toolbar-title position="middle" dark>Login</v-toolbar-title>
-        </v-toolbar>
-        <div class="pl-4 pr-4 pt-2 pb-2">
+      <panel
+        v-if="!$store.state.isUserLoggedIn"
+        title="Login">
             <v-text-field
               label="Email"
               v-model="email"/>
@@ -22,16 +20,16 @@
               @click="login">
               Login
             </v-btn>
-        </div>
-      </div>
+      </panel>
     </v-flex>
   </v-layout>
-
 </template>
 
 //  Controller
 <script>
 import AuthenticationService from '@/services/AuthenticationService'
+import Panel from '@/components/Panel'
+
 export default {
   data () {
     return {
@@ -54,6 +52,9 @@ export default {
         this.error = error.response.data.error
       }
     }
+  },
+  components: {
+    Panel
   }
 }
 </script>
